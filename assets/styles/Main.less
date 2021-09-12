@@ -1,0 +1,414 @@
+﻿@font-face {
+    font-family: 'icomoon';
+    src: url('icomoon.eot');
+    src: url('icomoon.eot#iefix') format('embedded-opentype'),url('icomoon.ttf') format('truetype'),url('icomoon.woff') format('woff'),url('icomoon.svg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: HyliaSerif;
+    src: url("HyliaSerifBeta-Regular.otf") format("opentype");
+}
+
+.base-marker-icon {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-BotW_Great-Fairy:before {
+    content: "\e91a";
+}
+
+.icon-BotW_Stables:before {
+    content: "\e91c";
+}
+
+.icon-Button:before {
+    content: "\e915";
+}
+
+.icon-BotW_Korok-Seeds:before {
+    content: "\e91b";
+}
+
+.icon-BotW_Dungeon:before {
+    content: "\e916";
+}
+
+.icon-BotW_Farm:before {
+    content: "\e917";
+}
+
+.icon-BotW_The-Temple-of-Time:before {
+    content: "\e918";
+}
+
+.icon-BotW_Village:before {
+    content: "\e919";
+}
+
+.icon-BotW_Weapons:before {
+    content: "\e900";
+}
+
+.icon-BotW_Tower-of-Resurrection:before {
+    content: "\e901";
+}
+
+.icon-BotW_Shrines:before {
+    content: "\e902";
+}
+
+.icon-BotW_Shrine-of-Resurrection:before {
+    content: "\e903";
+}
+
+.icon-BotW_Shields:before {
+    content: "\e904";
+}
+
+.icon-BotW_Points-of-Interest:before {
+    content: "\e905";
+}
+
+.icon-BotW_Mushroom:before {
+    content: "\e906";
+}
+
+.icon-BotW_Meat:before {
+    content: "\e907";
+}
+
+.icon-BotW_Materials:before {
+    content: "\e908";
+}
+
+.icon-BotW_Locations:before {
+    content: "\e909";
+}
+
+.icon-BotW_Items:before {
+    content: "\e90a";
+}
+
+.icon-BotW_Herb:before {
+    content: "\e90b";
+}
+
+.icon-BotW_Guardian:before {
+    content: "\e90c";
+}
+
+.icon-BotW_Fish:before {
+    content: "\e90d";
+}
+
+.icon-BotW_Equipment:before {
+    content: "\e90e";
+}
+
+.icon-BotW_Enemy-Camp:before {
+    content: "\e90f";
+}
+
+.icon-BotW_Enemies:before {
+    content: "\e910";
+}
+
+.icon-BotW_Bow-n-Arrows:before {
+    content: "\e911";
+}
+
+.icon-BotW_Boss:before {
+    content: "\e912";
+}
+
+.icon-BotW_Armor:before {
+    content: "\e913";
+}
+
+.icon-film:before {
+    content: "\f008";
+}
+
+.icon-bomb:before {
+    content: "\e91d";
+}
+
+.icon-bubble2:before {
+    content: "\e96e";
+}
+
+html, body {
+    margin: 0;
+    height: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, '微软雅黑';
+}
+
+#mapContainer {
+    width: 100%;
+    height: 100%;
+
+    .leaflet-marker-pane {
+
+        .markIcon {
+            border: solid 1px rgba(0,0,0,0.2);
+            padding: 1px;
+            border-radius: 3px;
+            width: 20px;
+            height: 20px;
+            line-height: 18px;
+            text-align: center;
+            box-sizing: border-box;
+
+            &:before {
+                font-size: 14px;
+                color: #fff;
+                .base-marker-icon;
+                vertical-align: middle;
+                display: inline-block;
+                margin-top: -6px;
+            }
+        }
+
+        .marked {
+            background-color: #666 !important;
+
+            &:before {
+                color: #999;
+            }
+        }
+    }
+}
+
+.icon-BotW_Great-Fairy, .icon-BotW_Great-Fairy:after {
+    background-color: rgb(228,78,227);
+}
+
+.icon-BotW_Korok-Seeds, .icon-BotW_Korok-Seeds:after {
+    background-color: rgb(55,181,0);
+}
+
+.icon-film, .icon-film:after {
+    background-color: rgb(2,199,255);
+}
+
+.icon-BotW_Boss, .icon-BotW_Boss:after {
+    background-color: rgb(194, 14, 14);
+}
+
+.icon-bubble2, .icon-bubble2:after {
+    background-color: rgb(44, 131, 204);
+}
+
+.icon-BotW_Shrines, .icon-BotW_Shrines:after {
+    background-color: rgb(0,130,196);
+}
+
+.icon-BotW_Stables, .icon-BotW_Stables:after {
+    background-color: rgb(215,139,6);
+}
+
+.icon-BotW_Tower-of-Resurrection, .icon-BotW_Tower-of-Resurrection:after {
+    background-color: rgb(36, 216, 216);
+}
+
+.icon-BotW_Village, .icon-BotW_Village:after {
+    background-color: rgb(240,130,0);
+}
+
+.icon-BotW_Weapons, .icon-BotW_Weapons:after {
+    background-color: rgb(255,206,6);
+}
+
+.icon-BotW_Bow-n-Arrows, .icon-BotW_Bow-n-Arrows:after {
+    background-color: rgb(255,206,6);
+}
+
+.icon-BotW_Shields, .icon-BotW_Shields:after {
+    background-color: rgb(255,206,6);
+}
+
+.icon-BotW_Armor, .icon-BotW_Armor:after {
+    background-color: rgb(255,206,6);
+}
+
+#switchType {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 999;
+
+    strong {
+        font-size: 14px;
+        background-color: #000;
+        display: block;
+        line-height: 30px;
+        padding: 0 20px;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    > ul {
+        border-radius: 5px;
+        background-color: rgba(0,0,0,0.8);
+        overflow: hidden;
+        max-height: 0px;
+        transition: all ease-in 0.5s;
+        margin: 0;
+        padding: 0;
+
+        > li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 14px;
+            display: block;
+            line-height: 26px;
+            padding: 0 20px;
+            color: #fff;
+            cursor: pointer;
+            transition: all ease-in 0.2s;
+            background-color: transparent;
+            position: relative;
+
+            &:after {
+                content: " ";
+                position: absolute;
+                left: 8px;
+                top: 10px;
+                height: 6px;
+                width: 6px;
+                border-radius: 50%;
+            }
+
+            &:hover {
+                background-color: rgba(255,255,255,0.2);
+            }
+
+            &.current {
+                background-color: dodgerblue;
+            }
+
+            &:before {
+                .base-marker-icon;
+                margin-right: 10px;
+            }
+
+            &.title {
+                font-size: 10px;
+                line-height: 18px;
+                color: #999;
+                cursor: default;
+                border-top: solid 1px #666;
+                padding-top: 5px;
+
+                &:hover {
+                    background-color: transparent;
+                }
+
+                &.current {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+
+    &:hover {
+
+        ul {
+            max-height: 1000px;
+        }
+    }
+}
+
+#nameSearch {
+    position: fixed;
+    top: 10px;
+    right: 240px;
+    z-index: 999;
+    background-color: #000;
+    border-radius: 5px;
+    overflow: hidden;
+
+    input {
+        padding: 0 10px;
+        margin: 0;
+        line-height: 30px;
+        height: 30px;
+        font-size: 12px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, '微软雅黑';
+        border: 0;
+        background-color: transparent;
+        outline: none;
+        color: #fff;
+        width: 160px;
+
+        &::placeholder {
+            color: #666;
+        }
+    }
+
+    .clear {
+        color: #fff;
+        line-height: 30px;
+        padding: 0 10px;
+        font-size: 12px;
+        cursor: pointer;
+        display: inline-block;
+
+        &:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        &:active {
+            background-color: rgba(255,255,255,0.15);
+        }
+    }
+}
+
+.popupContainer {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, '微软雅黑';
+
+    .name {
+        color: #000;
+        font-size: 16px;
+        display: block;
+        font-weight: lighter;
+        font-family: HyliaSerif, '微软雅黑';
+
+        &:nth-of-type(2) {
+            margin-top: 10px;
+            border-top: solid 1px #eee;
+            padding-top: 10px;
+        }
+    }
+
+    .buttonContainer {
+        padding-top: 6px;
+
+        a, span {
+            display: inline-block;
+            color: dodgerblue;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-right: 10px;
+
+            &:hover {
+                color: deepskyblue;
+            }
+        }
+    }
+}
