@@ -2,13 +2,13 @@
 
 ![zelda](http://127.0.0.1:8080/readMeImages/zelda.png)
 
-![tile](http://127.0.0.1:8080/readMeImages/tile.png)
-
 ## 背景
+
+最近在 `肝🤕` 塞尔达，同时公司有地图加载的需求，于是想以 `旷野之息` 地图为例，学习实践一下前端开发相关的地图知识，本文内容主要介绍通过使用瓦片地图加载原理，实现 `塞尔达旷野之息` 地图加载并添加交互锚点。
 
 ## 基础知识
 
-### 瓦片地图
+### 瓦片地图 `🗺`
 
 瓦片地图url https://www.cnblogs.com/feiquan/p/14304660.html
 
@@ -16,9 +16,11 @@
 
 瓦片地图原理 https://www.jianshu.com/p/e9e83b427045
 
-https://juejin.cn/post/6844904036840243207
+`瓦片地图` 金字塔模型是一种多分辨率层次模型，从瓦片金字塔的底层到顶层，分辨率越来越低，但表示的地理范围不变。首先确定地图服务平台所要提供的缩放级别的数量N，把缩放级别最高、地图比例尺最大的地图图片作为金字塔的底层，即第0层，并对其进行分块，从地图图片的左上角开始，从左至右、从上到下进行切割，分割成相同大小(比如256x256像素)的正方形地图瓦片，形成第0层瓦片矩阵;在第0层地图图片的基础上，按每像素分割为2×2个像素的方法生成第1层地图图片，并对其进行分块，分割成与下一层相同大小的正方形地图瓦片，形成第1层瓦片矩阵;采用同样的方法生成第2层瓦片矩阵;…;如此下去，直到第N一1层，构成整个瓦片金字塔。
 
-瓦片地图金字塔模型是一种多分辨率层次模型，从瓦片金字塔的底层到顶层，分辨率越来越低，但表示的地理范围不变。首先确定地图服务平台所要提供的缩放级别的数量N，把缩放级别最高、地图比例尺最大的地图图片作为金字塔的底层，即第0层，并对其进行分块，从地图图片的左上角开始，从左至右、从上到下进行切割，分割成相同大小(比如256x256像素)的正方形地图瓦片，形成第0层瓦片矩阵;在第0层地图图片的基础上，按每像素分割为2×2个像素的方法生成第1层地图图片，并对其进行分块，分割成与下一层相同大小的正方形地图瓦片，形成第1层瓦片矩阵;采用同样的方法生成第2层瓦片矩阵;…;如此下去，直到第N一1层，构成整个瓦片金字塔。
+![tile_0](http://127.0.0.1:8080/readMeImages/tile_0.png)
+
+![tile_1](http://127.0.0.1:8080/readMeImages/tile_1.png)
 
 瓦片地图原理
 
@@ -32,33 +34,50 @@ https://juejin.cn/post/6844904036840243207
 
 有很多工具可以用来制作瓦片地图，Tiled 就是其中一款流行的制作工具，它有一个活跃的用户社区。推荐你去使用，上面的屏幕截图就来自 Tiled 的项目。(https://www.mapeditor.org/)
 
-![hr](http://127.0.0.1:8080/readMeImages/hr.png)
+瓦片地图生成工具：arcgis：https://developers.arcgis.com
 
+### 墨卡托投影
+
+墨卡托投影，是正轴等角圆柱投影，又称等角圆柱投影，圆柱投影的一种，由荷兰地图学家墨卡托（G. Mercator）于1569年创拟。为地图投影方法中影响最大的。
+设想一个与地轴方向一致的圆柱切于或割于地球，按等角条件将经纬网投影到圆柱面上，将圆柱面展为平面后，得平面经纬线网。投影后经线是一组竖直的等距离平行直线，纬线是垂直于经线的一组平行直线。各相邻纬线间隔由赤道向两极增大。一点上任何方向的长度比均相等，即没有角度变形，而面积变形显著，随远离基准纬线而增大。该投影具有等角航线被表示成直线的特性，故广泛用于编制航海图和航空图等。
+墨卡托投影，是一种"等角正切圆柱投影”，由荷兰地图学家墨卡托（Gerhardus Mercator 1512－1594）在1569年拟定。
+假设地球被围在一中空的圆柱里，其基准纬线与圆柱相切（赤道）接触，然后再假想地球中心有一盏灯，把球面上的图形投影到圆柱体上，再把圆柱体展开，这就是一幅选定基准纬线上的“墨卡托投影”绘制出的地图。
+
+### Leaflet.js `🌿`
+
+`Leaflet (https://leafletjs.com)` 是一个为建设交互性好适用于移动设备地图，而开发的现代的、开源的 JavaScript 库。使用它我们可以部署简单，交互式，轻量级的Web地图。
+
+* 代码仅有 `33 KB`，但它具有开发在线地图的大部分功能。
+* 允许使用图层，`WMS`，标记，弹出窗口，矢量图层（折线，多边形，圆形等），图像叠加层和 `GeoJSON` 等图层。
+* 可以通过拖动地图，缩放（通过双击或滚轮滚动），使用键盘，使用事件处理以及拖动标记来与 `Leaflet` 地图进行交互。
+* 浏览器支持桌面端 `Chrome`，Firefox，Safari 5 +，Opera 12 +，IE 7-11，以及Safari，Android，Chrome，Firefox等手机浏览器。
+
+![hr](http://127.0.0.1:8080/readMeImages/hr.png)
 
 ## 实现
 
-### leafletjs
-https://leafletjs.com/
-http://webgis.cn/leaflet-quickstart.html
-https://iowiki.com/leafletjs/leafletjs_getting_started.html
-
-什么是Leaflet.js
-Leaflet.js是一个开源库，使用它我们可以部署简单，交互式，轻量级的Web地图。
-
-Leaflet JavaScript库允许您使用图层，WMS，标记，弹出窗口，矢量图层（折线，多边形，圆形等），图像叠加层和GeoJSON等图层。
-
-您可以通过拖动地图，缩放（通过双击或滚轮滚动），使用键盘，使用事件处理以及拖动标记来与Leaflet地图进行交互。
-
-Leaflet支持浏览器，如桌面上的Chrome，Firefox，Safari 5 +，Opera 12 +，IE 7-11，以及Safari，Android，Chrome，Firefox等手机浏览器
-
-
-`#mapContainer` 元素用于承载地图。
+在页面的 `<head>` 标签中引入 `Leaflet`的 `css` 文件和 `js` 文件。在想要创建地图的地方创建一个带有 id 的 div，示例中用 `#mapContainer` 元素承载地图。
 
 ```html
+<head>
+  <link href="assets/libs/leaflet/leaflet.css" rel="stylesheet"/>
+  <script src="assets/libs/leaflet/leaflet-src.js"></script>
+</head>
 <body>
   <div id="mapContainer"></div>
 </body>
 ```
+
+确保地图有一个明确的高度, 例如在CSS中添加如下全屏显示的样式。
+
+```css
+#mapContainer {
+  width: 100%;
+  height: 100%;
+}
+```
+
+现在地图的初始化已经完成了，可以准备用它做一些事情了。
 
 添加地图
 ```js
@@ -68,6 +87,7 @@ var map = L.map('mapContainer', {
   attributionControl: false,
   maxBounds: bounds,
   maxBoundsViscosity: 1.0,
+  // 1.初始化地图，并将其视图设置为我们所选择的地理坐标和缩放级别：
 }).setView([0, 0], 2);
 var layer = L.tileLayer('assets/maps/{z}_{x}_{y}.png', {
   attribution: '&copy; David',
@@ -75,8 +95,14 @@ var layer = L.tileLayer('assets/maps/{z}_{x}_{y}.png', {
   maxZoom: 7,
   noWrap: true,
   bounds: bounds
+// 2.显示地图。
 }).addTo(map);
 ```
+
+默认情况下（因为我们在创建地图实例时没有设置任何参数），地图上的所有鼠标事件和触摸交互功能都是开启的，并且它具有缩放和属性控件。
+
+> 确保所有代码都在用于显示地图的 div 和 leaflet.js 包含之后调用。
+
 ![map_0](http://127.0.0.1:8080/readMeImages/map_0.png)
 
 拖动、缩放
@@ -84,6 +110,10 @@ var layer = L.tileLayer('assets/maps/{z}_{x}_{y}.png', {
 ![map_0.5](http://127.0.0.1:8080/readMeImages/map_0.5.png)
 
 添加标记
+
+L.marker([x, y])：除了瓦片之外，你还可以轻松地在地图中添加其他东西，包括标记、折线、多边形、圆圈和弹出窗口。
+bindPopup: 弹出窗口通常用于将某些信息附加到地图上的特定对象上。Leaflet为此有一个非常简单的方法：
+
 ```js
 $.each(markerData, function () {
   var key = this.markerCategoryId + "-" + this.id + "-" + this.name.replace(/[^A-Z]/gi, "-");
@@ -97,6 +127,7 @@ $.each(markerData, function () {
   className += " icon-" + markerStyle[this.markerCategoryId];
   var marker = L.marker([this.y, this.x], {
     title: this.name,
+    // 自定义图标
     icon: L.divIcon({
       className: className,
       iconSize: [20, 20],
@@ -106,6 +137,33 @@ $.each(markerData, function () {
   }).addTo(map).bindPopup(popupHtml);
 });
 ```
+
+尝试点击我们的对象。bindPopup方法将具有指定HTML内容的弹出窗口附加到标记上，因此当您单击对象时弹出窗口出现，openPopup方法（仅用于标记）立即打开所附的弹出窗口。
+您还可以把弹出窗口设置为层（当您需要更多的东西，而不是附加弹出窗口到一个对象）：
+var popup = L.popup() .setLatLng([51.5, -0.09]) .setContent("I am a standalone popup.") .openOn(mymap);
+这里我们使用 openOn 而不是 addTo 因为它在打开一个新的弹出窗口时，处理以前打开的弹出窗口的自动关闭，这样可以增强可用性。
+
+处理事件
+每次在Leaflet中发生某些事情，例如用户单击标记或地图缩放更改时，相应的对象都会发送一个事件，您可以通过函数来处理该事件，它允许您对用户交互作出反应：
+
+function onMapClick(e) {
+    alert("You clicked the map at " + e.latlng);
+}
+mymap.on('click', onMapClick);
+每个对象都有自己的事件集,侦听器函数的第一个参数是事件对象,它包含关于发生的事件的有用信息。例如，MAP单击事件对象（在上面的示例中为e）具有latlng属性，latlng属性是单击发生的位置。
+
+让我们通过使用弹出而不是alert来改进我们的示例：
+
+var popup = L.popup();
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(mymap);
+}
+mymap.on('click', onMapClick);
+试着点击地图，你就会看到弹出窗口中的坐标。查看完整的例子 ：
+
 ![map_1](http://127.0.0.1:8080/readMeImages/map_1.png)
 
 扩展
@@ -120,7 +178,16 @@ $.each(markerData, function () {
 
 ![map](http://127.0.0.1:8080/readMeImages/map.gif)
 
+![hr](http://127.0.0.1:8080/readMeImages/hr_light.png)
+
 ## 总结
+
+## 参考资料 `🔗`
+
+* 瓦片地图生成工具 `Tiled` 项目：<https://www.mapeditor.org>
+* 瓦片地图生成工具 `arcgis`：<https://developers.arcgis.com>
+* 开放地理空间实验室 `Leaflet.js`: <http://webgis.cn/leaflet-index.html>
+* 墨卡托投影：<https://baike.baidu.com/item/%E5%A2%A8%E5%8D%A1%E6%89%98%E6%8A%95%E5%BD%B1>
 
 
 ![footer](http://127.0.0.1:8080/readMeImages/footer.png)
