@@ -6,7 +6,7 @@
   }
   return result;
 })();
-var ShrinesToJapanese = (function () {
+var shrinesToJapanese = (function () {
   var shrines = "\
 カヤ・ミワの祠|Kaya Wan Shrine\r\n\
 ダタ・クスの祠|Daka Tuss Shrine\r\n\

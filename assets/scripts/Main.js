@@ -13,6 +13,7 @@
     noWrap: true,
     bounds: bounds
   }).addTo(map);
+
   var markerStyle = {};
   var visibleMarker = {};
   var css = "";
@@ -105,7 +106,7 @@
       this.remove();
     });
     cacheMarker = [];
-    $.each(MarkerData, function () {
+    $.each(markerData, function () {
       var visible = false;
       if (from === "filter" && visibleMarker[this.markerCategoryId]) visible = true;
       if (from === "search") {
@@ -118,15 +119,15 @@
         var popupHtml = '<div class="popupContainer">';
         popupHtml += '<strong class="name">' + this.name + '</strong>';
         popupHtml += '<div class="buttonContainer">';
-        popupHtml += '<span class="markButton" onclick="MarkPoint(this)" data-key="' + key + '">标记</span>';
+        popupHtml += '<span class="markButton" onclick="markPoint(this)" data-key="' + key + '">标记</span>';
         popupHtml += '<a class="markButton" target="_blank" href="http://www.ign.com/search?q=' + encodeURIComponent(this.name) + '">IGN</a>';
         popupHtml += '<a class="markButton" target="_blank" href="http://www.polygon.com/search?q=' + encodeURIComponent(this.name) + '">Polygon</a>';
         popupHtml += '<a class="markButton" target="_blank" href="https://c.gufen.ga/#q=' + encodeURIComponent(this.name) + '">Google</a>';
         popupHtml += '<a class="markButton" target="_blank" href="http://www.baidu.com/baidu?word=' + encodeURIComponent(this.name) + '">百度</a>';
         popupHtml += '</div>';
         if (this.markerCategoryId === "1925") {
-          if (ShrinesToJapanese[this.name]) {
-            var jName = ShrinesToJapanese[this.name];
+          if (shrinesToJapanese[this.name]) {
+            var jName = shrinesToJapanese[this.name];
             popupHtml += '<strong class="name">' + jName + '</strong>';
             popupHtml += '<div class="buttonContainer">';
             popupHtml += '<a class="markButton" target="_blank" href="https://zelda-bow.gamepedia.jp/?s=' + jName + '">GamePedia</a>';
@@ -176,7 +177,7 @@
   });
 });
 
-function MarkPoint(element) {
+function markPoint(element) {
   var that = $(element);
   var key = that.attr("data-key");
   var oldValue = localStorage.getItem(key);
