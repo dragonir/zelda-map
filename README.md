@@ -145,7 +145,7 @@ $.each(markerData, function () {
 
 ![map](https://img2020.cnblogs.com/blog/772544/202109/772544-20210913222547970-1308207067.gif)
 
-> 在线预览：
+> 在线预览：<https://dragonir.github.io/zelda-map>
 
 ![hr_light](https://img2020.cnblogs.com/blog/772544/202109/772544-20210913222628506-822174502.png)
 
@@ -164,3 +164,5 @@ $.each(markerData, function () {
 * ZXY标准瓦片 <http://support.supermap.com.cn/DataWarehouse/WebDocHelp/iServer/Subject_introduce/Cache/MapCache/TileFormat/ZXY_format.htm>
 
 ![footer](https://img2020.cnblogs.com/blog/772544/202109/772544-20210913222650061-1454509090.png)
+
+> 作者：dragonir 本文地址：

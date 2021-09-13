@@ -6,7 +6,7 @@
     maxBounds: bounds,
     maxBoundsViscosity: 1.0,
   }).setView([0, 0], 2);
-  var layer = L.tileLayer('assets/maps/{z}_{x}_{y}.png', {
+  var layer = L.tileLayer('../maps/{z}_{x}_{y}.png', {
     attribution: '&copy; David',
     minZoom: 2,
     maxZoom: 7,
