@@ -32,7 +32,7 @@
   var listContainer = $("#switchType ul");
   $("<li>").attr("data-type", "all").text("全部").appendTo(listContainer);
   $("<li>").attr("data-type", "none").text("无").appendTo(listContainer);
-  $.each(MarkerCatalog, function () {
+  $.each(markerCatalog, function () {
     var name = this.name;
     $("<li>").text(typeChinese[name] || name).appendTo(listContainer).addClass("title");
     $.each(this.children, function () {
